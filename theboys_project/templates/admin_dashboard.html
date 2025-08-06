@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="admin-container">
+    <div class="form-container">
+      <h2>Add New Product</h2>
+      <form method="POST" action="/add_product" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Product Name" required>
+        <input type="text" name="price" placeholder="Price" required>
+        
+        <div class="file-upload">
+          <label for="image">Product Image:</label>
+          <input type="file" name="image" id="image" accept="image/*" required>
+          <small>Max 2MB (PNG, JPG, JPEG, GIF)</small>
+        </div>
+        
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+
+    <div class="product-container">
+      <h2>Manage Products</h2>
+      <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+          <img src="{{ url_for('static', filename=product[3]) }}" alt="{{ product[1] }}"
+               onerror="this.src='{{ url_for('static', filename='images/default-product.png') }}'">
+          <h3>{{ product[1] }}</h3>
+          <p>₹{{ "%.2f"|format(product[2]) }}</p>
+          <a href="/delete_product/{{ product[0] }}" class="btn danger">Delete</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="orders-container">
+      <h2>Customer Orders</h2>
+      <div class="orders-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Payment</th>
+              <th>Delivery Time</th>
+              <th>Order Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td>{{ order[0] }}</td>
+              <td>{{ order[1] }}</td>
+              <td>{{ order[2] }}</td>
+              <td>₹{{ "%.2f"|format(order[3] * order[4] + order[8]) }}</td>
+              <td>{{ order[5] }}</td>
+              <td>{{ order[6] }}</td>
+              <td>{{ order[7] }}</td>
+              <td>{{ order[9] }}</td>
+              <td>{{ order[10] }}</td>
+              <td>{{ order[11] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <a href="/logout" class="btn logout">Logout</a>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="product-container">
+    <div class="header-section">
+      <h2>Available Products</h2>
+      <div class="cart-section">
+        <a href="/view_cart" class="btn cart-btn">Cart ({{ cart_count }})</a>
+        <a href="/logout" class="btn logout">Logout</a>
+      </div>
+    </div>
+    
+    <div class="products-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <img src="{{ url_for('static', filename=product[3]) }}" alt="{{ product[1] }}"
+             onerror="this.src='{{ url_for('static', filename='images/default-product.png') }}'">
+        <h3>{{ product[1] }}</h3>
+        <p>₹{{ product[2] }}</p>
+        <a href="/add_to_cart/{{ product[0] }}" class="btn">Add to Cart</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

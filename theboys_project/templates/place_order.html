@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Placed</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="order-box">
+    <h2>🎉 Order Successful!</h2>
+    <p>You ordered: <strong>{{ product }}</strong></p>
+    <p>Delivery to: <strong>{{ address }}</strong></p>
+    <a href="/products" class="btn">Back to Products</a>
+  </div>
+<script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿<!-- order_success.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Success</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="center-box">
+    <h2>Your order was placed successfully! �</h2>
+    <div class="order-details">
+      <p>Product: <strong>{{ product }}</strong></p>
+      <p>Delivery to: <strong>{{ address }}</strong></p>
+      <p>Expected delivery by: <strong>{{ delivery_time }}</strong></p>
+    </div>
+    <div class="action-buttons">
+      <a href="/products" class="btn">Back to Products</a>
+      <a href="/logout" class="btn logout">Logout</a>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

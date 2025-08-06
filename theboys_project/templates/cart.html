@@ -1,0 +1,40 @@
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="product-container">
+    <h2>Your Cart</h2>
+    {% if cart_items %}
+    <div class="cart-items">
+      {% for item in cart_items %}
+      <div class="cart-item">
+        <img src="{{ item[3] }}" alt="{{ item[1] }}">
+        <div class="cart-item-details">
+          <h3>{{ item[1] }}</h3>
+          <p>?{{ item[2] }} x {{ item[4] }} = ?{{ item[2] * item[4] }}</p>
+        </div>
+        <a href="/remove_from_cart/{{ item[0] }}" class="btn danger">Remove</a>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="cart-summary">
+      <p>Subtotal: ?{{ total }}</p>
+      <p>Delivery Charge: ?{{ delivery_charge }}</p>
+      <h3>Total: ?{{ total + delivery_charge }}</h3>
+      <a href="/checkout" class="btn">Proceed to Checkout</a>
+      <a href="/products" class="btn">Continue Shopping</a>
+    </div>
+    {% else %}
+    <p>Your cart is empty</p>
+    <a href="/products" class="btn">Browse Products</a>
+    {% endif %}
+    <a href="/logout" class="btn logout">Logout</a>
+  </div>
+</body>
+</html>

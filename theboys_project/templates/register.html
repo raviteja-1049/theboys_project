@@ -1,0 +1,27 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Customer Registration</h2>
+    <form method="POST">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <textarea name="address" placeholder="Address"></textarea>
+    <input type="tel" name="phone" placeholder="Phone Number">
+    <button type="submit">Register</button>
+</form>
+    <div class="links">
+      <a href="/login">Already have an account? Login</a><br>
+      <a href="/">Back to Home</a>
+    </div>
+  </div>
+
+
+</body>
+</html>
